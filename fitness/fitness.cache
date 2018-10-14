@@ -1,0 +1,17 @@
+CACHE MANIFEST
+# version 1.0
+
+CACHE:
+js/bootstrap.min.js
+js/bootstrap.min.js.map
+css/bootstrap.min.css
+css/bootstrap.min.css.map
+styles.css
+images/Hamburger_icon.svg.png
+images/prising.png
+images/table.jpg
+images/main.png
+images/icon.png
+contacts.html
+error.html
+index.html
