@@ -1,0 +1,23 @@
+CACHE MANIFEST
+# version 1.0
+
+CACHE:
+js/bootstrap.min.js
+js/bootstrap.min.js.map
+css/bootstrap.min.css
+css/bootstrap.min.css.map
+styles.css
+images/if_menu-alt_134216.png
+images/prising.png
+images/table.jpg
+images/main.jpg
+error.html
+index.html
+news.html
+
+NETWORK:
+#ckjwercvlkwe
+
+FALLBACK:
+/ /error.html
+
