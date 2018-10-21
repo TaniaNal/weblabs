@@ -47,23 +47,62 @@
      <img id="logo" src="images/icon.jpg" alt="Logo" height="40" width="60">
   </nav>
 
- <content>
+  <content>
   <div class="main">
     <div class="container">
-        <form>
-                     <img src="images/admin.jpg" align="center" alt="addphoto" height="300" width="420" >
-              <input type="file" class="form-control-file">
+       <center><h1 class="display-4" style="
+    margin-right: 50px;
+">Add news!</h1>
+          <form>
+              <h3 class="display-5" style="
+    margin-right: 70px;
+">Add image:</h3>
+              <input type="file" class="form-control-file" style="
+    margin-left: 400px;
+">
               <br>
             <div class="form-row">
               <div class="col-11">
-                  <textarea class="form-control" rows="7" placeholder="Text.."></textarea>
+               <h3  class="display-5">Add news:</h3>
+               <textarea id="long_descr" class="form-control" rows="5" style="border-color: pink;"  placeholder="Add news.."></textarea>
               </div>
               <div class="col-auto">
-                 <button id="submit-btn" type="submit" class="btn btn-primary" style="left: -350px;">Add news</button>
+                 <button id="submit-btn" type="submit" onclick="checkNews(); return false;" class="btn btn-primary"style="
+    right: 100px;
+">Add news</button>
               </div>
             </div>
-          </form>       
-        <div class="container">
+          </form>
+</center>
+          <script type="text/javascript">
+
+            function checkNewsLong() {
+               var newsLongText =  document.getElementById('long_descr');
+               if (newsLongText.value === "") {
+                 newsLongText.style.borderColor = "red";
+                return false;
+              }
+              else {
+                newsLongText.style.borderColor = "black";
+                return true;
+              }
+            }
+
+
+            function checkNews() {
+              if (checkNewsLong()) {
+                alert("Your news added!");
+                document.getElementById("long_descr").value = ""
+                return true;
+              } 
+              else if (!checkNewsLong()){
+                alert("You should fill in all fields!");
+                return false;
+              }
+            }
+          </script>
+
+                <div class="container">
         <footer class="page-footer font-small">
           <div class="footer-copyright text-center py-3">© 2018 Tania Nalezhata
           </div>
@@ -71,7 +110,8 @@
         </div>
       </div>
     </div>
-  </div>
-  </content>
+      </div>
+
+
 </body>
 </html>

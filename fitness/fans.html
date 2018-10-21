@@ -50,50 +50,101 @@
   <content>
   <div class="main">
   <div class="container">
-     <h1 class="display-4">Appeal of fans</h1>
+     <h1 class="display-4">Fans reviews</h1>
       <div class="row">
         <div class="col-lg-10 col-md-8 mx-auto">
+          <div id="posts">
           <div class="post-preview">
-                      <center> <img src="images/man.png" alt="man" height="100" width="100"></center><br>
               <p class="post-subtitle">
                 This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
               </p>
-            <p class="post-meta">21.05.2017, 18:05
-              <a href="#" style="float: right;">Ivan,Ukraine</a>
-            </p>
+            <div class="row">
+                <div class="col-auto">
+                  <p class="post-meta">18.10.2018 </p>
+                </div>
+                <div class="col-auto">
+                  <p class="author"> <a href="#" style="float: right;margin-left: 850px;">Oleg</a></p>
+                </div>
+              </div>
           </div>
           <div class="post-preview">
               <p class="post-subtitle">
-                                        <center> <img src="images/man2.png" alt="man" height="100" width="100"></center><br>
-                This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
+            This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
               </p>
-            <p class="post-meta">02.02.2017, 11:17
-              <a href="#" style="float: right;">Yulia,Ukraine</a>
-            </p>
+            <div class="row">
+                <div class="col-auto">
+                  <p class="post-meta">17.08.2018 </p>
+                </div>
+                <div class="col-auto">
+                  <p class="author"> <a href="#" style="float: right;margin-left: 850px;">Keti</a></p>
+                </div>
+              </div>
           </div>
           <div class="post-preview">
-                                    <center> <img src="images/woman.png" alt="man" height="100" width="100"></center><br> 
               <p class="post-subtitle">
                 This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
               </p>
-            <p class="post-meta">24.03.2017, 08:07
-              <a href="#" style="float: right;">Oleg,Ukraine</a>
-            </p>
+              <div class="row">
+                <div class="col-auto">
+                  <p class="post-meta">12.08.2018 </p>
+                </div>
+                <div class="col-auto">
+                  <p class="author"> <a href="#" style="float: right;margin-left: 850px;">Lesia</a></p>
+                </div>
+              </div>
           </div>
-            <center><h2 class="display-5">Your feedback</h1></center>
-          <form>
-          <div class="form-row">
-            <div class="col-11">
-                <center>
-              <textarea class="form-control" id="review" rows="3" placeholder="Add text"></textarea>
-                </center>
-            </div>
-            <div class="col-auto">
-               <button id="submit-btn" type="submit" class="btn btn-primary" style="left: -150px;" >Add</button>
-            </div>
           </div>
-          </form>
-        <div class="container">
+            <center><h4 class="display-5">Your feedback</h4>
+      
+        <script>
+          function validateForm() {
+              var x = document.forms["reviewForm"]["review"].value;
+              if (x == "") {
+                  alert("Review must be filled out");
+                  return false;
+              }
+              else {
+                document.getElementById('review').value = "";
+                addAppeal(x);
+                return false;
+              }
+
+          function addAppeal(appeal) {
+                var newPost = document.createElement('post-preview');
+                var aText = document.createElement('h2');
+                aText.innerHTML = appeal.split("\n",1);
+                var aSubtitle = document.createElement('p');
+                aSubtitle.className = "post-subtitle";
+                aSubtitle.innerHTML = appeal;
+                var dateTime = new Date();
+                var aDate = document.createElement('p');
+                aDate.className = "post-meta";
+                aDate.innerHTML = "" + dateTime.getDate() + '.'
+                  + (dateTime.getMonth()+1) + '.'
+                  + dateTime.getFullYear() + " Admin";
+                newPost.appendChild(aSubtitle);
+                newPost.appendChild(aDate);
+                document.getElementById("posts").appendChild(newPost);
+              }
+          } </script>
+
+         
+          <form name="reviewForm">
+            <div class="form-row">
+              <div class="col-11">
+              <br>
+                <textarea class="form-control" id="review" rows="3" placeholder="Add text.."></textarea>
+              </div>
+                <div class="col-auto">
+                  <input id="add_appeal" class="submit_button" type="button" onclick="validateForm();" value="Add"style="margin-top: 95px;">
+                </div>
+              </div>
+          </form></center>
+
+          </div>
+        </div>
+      </div>
+      <div class="container">
         <footer class="page-footer font-small">
           <div class="footer-copyright text-center py-3">© 2018 Tania Nalezhata
           </div>
