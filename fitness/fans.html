@@ -6,13 +6,14 @@
     <link rel="icon" href="images/icon.jpg">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
-    <title>Fitness club</title>
-  </head>
-  <body>
+    <script src="js/fans.js" type="text/javascript"></script>
+<title>Fitness club</title>
+    </head>
+  <body  onload="load_data()">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="index.html">Main</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,7 +21,7 @@
      <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="bowling_clubs.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Lessons
         </a>
         <div class="dropdown-menu">
@@ -50,102 +51,67 @@
   <content>
   <div class="main">
   <div class="container">
-     <h1 class="display-4">Fans reviews</h1>
+     <h1 class="display-4">Fans</h1>
       <div class="row">
         <div class="col-lg-10 col-md-8 mx-auto">
           <div id="posts">
           <div class="post-preview">
               <p class="post-subtitle">
-                This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
+             This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
               </p>
             <div class="row">
                 <div class="col-auto">
-                  <p class="post-meta">18.10.2018 </p>
+                  <p class="post-meta">18.10.2018, 14:45 </p>
                 </div>
                 <div class="col-auto">
-                  <p class="author"> <a href="#" style="float: right;margin-left: 850px;">Oleg</a></p>
+                  <p class="author"> <a href="#" style="float: right;">Oleg</a></p>
                 </div>
               </div>
           </div>
           <div class="post-preview">
               <p class="post-subtitle">
-            This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
+             This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
               </p>
             <div class="row">
                 <div class="col-auto">
-                  <p class="post-meta">17.08.2018 </p>
+                  <p class="post-meta">17.08.2018, 12:12</p>
                 </div>
                 <div class="col-auto">
-                  <p class="author"> <a href="#" style="float: right;margin-left: 850px;">Keti</a></p>
+                  <p class="author"> <a href="#" style="float: right;">Kate</a></p>
                 </div>
               </div>
           </div>
           <div class="post-preview">
               <p class="post-subtitle">
-                This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
+             This fitness club is the best of those I have visited. Very nice coaches. Not expensive and useful. I advise everyone to write down, or buy a subscription as a gift to a friend.
               </p>
               <div class="row">
                 <div class="col-auto">
-                  <p class="post-meta">12.08.2018 </p>
+                  <p class="post-meta">12.08.2018, 13:03 </p>
                 </div>
                 <div class="col-auto">
-                  <p class="author"> <a href="#" style="float: right;margin-left: 850px;">Lesia</a></p>
+                  <p class="author"> <a href="#" style="float: right;">Lesia</a></p>
                 </div>
               </div>
           </div>
-          </div>
-            <center><h4 class="display-5">Your feedback</h4>
-      
-        <script>
-          function validateForm() {
-              var x = document.forms["reviewForm"]["review"].value;
-              if (x == "") {
-                  alert("Review must be filled out");
-                  return false;
-              }
-              else {
-                document.getElementById('review').value = "";
-                addAppeal(x);
-                return false;
-              }
-
-          function addAppeal(appeal) {
-                var newPost = document.createElement('post-preview');
-                var aText = document.createElement('h2');
-                aText.innerHTML = appeal.split("\n",1);
-                var aSubtitle = document.createElement('p');
-                aSubtitle.className = "post-subtitle";
-                aSubtitle.innerHTML = appeal;
-                var dateTime = new Date();
-                var aDate = document.createElement('p');
-                aDate.className = "post-meta";
-                aDate.innerHTML = "" + dateTime.getDate() + '.'
-                  + (dateTime.getMonth()+1) + '.'
-                  + dateTime.getFullYear() + " Admin";
-                newPost.appendChild(aSubtitle);
-                newPost.appendChild(aDate);
-                document.getElementById("posts").appendChild(newPost);
-              }
-          } </script>
-
-         
+          </div>             
           <form name="reviewForm">
             <div class="form-row">
               <div class="col-11">
-              <br>
-                <textarea class="form-control" id="review" rows="3" placeholder="Add text.."></textarea>
+                <textarea class="form-control" id="review" rows="3" cols="4" placeholder="Add text"></textarea>
               </div>
-                <div class="col-auto">
-                  <input id="add_appeal" class="submit_button" type="button" onclick="validateForm();" value="Add"style="margin-top: 95px;">
+                <div class="col-auto" style="top: 65px;">
+                  <input id="add_appeal" onclick="send()" class="btn btn-primary" type="button" value="Send">
                 </div>
               </div>
-          </form></center>
+          </form>
 
           </div>
         </div>
       </div>
-      <div class="container">
-        <footer class="page-footer font-small">
+
+        <div class="container">
+         <footer class="page-footer font-small">
           <div class="footer-copyright text-center py-3">© 2018 Tania Nalezhata
           </div>
         </footer>
