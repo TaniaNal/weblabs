@@ -3,11 +3,20 @@ function isOnline() {
     return window.navigator.onLine;
 }
 
+var useLocalStorage = false;
+
 const title =  document.getElementById('title');
 const short_descr = document.getElementById('short_descr');
 const img = document.getElementById('fileform')
 
-var news_list = []
+class News {
+  constructor(title, short_descr, long_descr, img) {
+    this.title =  title;
+    this.short_descr = short_descr;
+    this.img = img;
+  }
+}
+
 
 const onSubmitPress = function(e){
   e.preventDefault();
@@ -35,12 +44,6 @@ function storeMessage(box) {
     }
 }
 
-function storeMessageLocaly(box) {
-    news_list.push(box);
-    localStorage.setItem("news_list",JSON.stringify(news_list));
-    alert('Message saved locally: "' + box.title + '"');
-    clearUI();
-}
 
 function storeMessageRemotely(box) {
     alert('Message sent to server: "' + box.title + '"');
@@ -48,18 +51,60 @@ function storeMessageRemotely(box) {
     return false;
 }
 
-function sendAllToServer() {
-  items = JSON.parse(localStorage.getItem("news_list"));
-    for(var i = 0; i < items.length; i++){
-       alert("Sending to server item " + items[i].title);
+function getNews() {
+  var news = new Array;
+  items = localStorage.getItem("news_list");
+    if(items !== null) {
+      news = JSON.parse(items);
     }
-    localStorage.removeItem("news_list");
+  return news;
+}
+
+function storeMessageLocaly(box) {
+  if(useLocalStorage) {
+    var news_list = getNews();
+    news_list.push(box);
+    localStorage.setItem("news_list",JSON.stringify(news_list));
+    alert('Message saved locally (localStorage): "' + box.title + '"');
+    clearUI();
+  }
+  else {
+    var openDB = indexedDB.open("news_list", 1);
+
+    openDB.onerror = function(event) {
+      alert("Error occurred when loading news");
+    };
+
+    openDB.onupgradeneeded = function() {
+        var db = openDB.result;
+        var store = db.createObjectStore("news", {keyPath: "title"});
+        store.createIndex("title", "title", { unique: false });
+        store.createIndex("short_descr", "short_descr", { unique: false });
+        store.createIndex("img", "img", { unique: false });
+    };
+
+    openDB.onsuccess = function(event) {
+      var db = openDB.result;
+      var tx = db.transaction(["news"], "readwrite");
+      var store = tx.objectStore("news");
+      var addFeedback = store.put(box);
+      addFeedback.onsuccess = function(event){
+        alert('Message saved locally (indexedDB): "' + box.title + '"');
+        clearUI();
+      }
+      addFeedback.onerror = function(event){
+        alert("Error occurred when loading news");
+      }
+      tx.oncomplete = function(){
+        db.close();
+      }
+    };
+  }
 }
 
 function clearUI () {
     title.value = '';
     short_descr.value = '';
-    long_descr.value = '';
     img.value = '';
     return false;
 }
